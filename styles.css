@@ -1,111 +1,146 @@
- /* Reset and Base Styles */
- * {
+/* ==========================================================================
+   ESTILS PER A LA TARGETA DIGITAL (MODE FOSC)
+   Dissenyat per a: Roger Masgoret
+   ========================================================================== */
+
+/* 1. Reseteig bàsic i caixa de model */
+* {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
+
+/* 2. Variables de color (Paleta Slate moderna i neta) */
+:root {
+    --bg-main: #0f172a;        /* Fons general de la pàgina (Slate 900) */
+    --bg-card: #1e293b;        /* Fons de la targeta interior (Slate 800) */
+    --border-card: #334155;    /* Sutil vora per donar profunditat (Slate 700) */
+    --text-primary: #ffffff;   /* Títols i elements principals */
+    --text-secondary: #cbd5e1; /* Text de la descripció (Slate 300) */
+    --text-muted: #64748b;     /* Text del peu de pàgina (Slate 500) */
+    --accent: #38bdf8;         /* Color destacat / Enllaços (Sky 400) */
+    --accent-hover: #7dd3fc;   /* Color en passar el ratolí (Sky 300) */
+}
+
+/* 3. Estils del cos (Body) */
 body {
-    background-color: #2c2c2c; /* Dark Grey */
-    color: #f0f0f0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-secondary);
+    line-height: 1.6;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 100vh;
+    min-height: 100vh; /* Centra el contingut verticalment a la pantalla */
     padding: 20px;
+}
+
+/* 4. Contenidor principal (Targeta) */
+.profile-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-card);
+    border-radius: 16px;
+    padding: 40px 30px;
+    max-width: 450px;
+    width: 100%;
     text-align: center;
-    position: relative;
-}
-h1 {
-    font-size: 3rem;
-    margin-top: 20px;
-    margin-bottom: 15px;
-    letter-spacing: 2px;
-}
-p {
-    font-size: 1.2rem;
-    margin-bottom: 40px;
-    max-width: 600px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4), 
+                0 8px 10px -6px rgba(0, 0, 0, 0.4);
 }
 
-/* Profile Picture Styles */
+/* 5. Elements de perfil (Imatge i Títols) */
 .profile-picture {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 4px solid #555; /* Optional: Adds a border around the image */
+    width: 120px;
+    height: 120px;
+    border-radius: 50%; /* Fa la imatge completament rodona */
+    object-fit: cover;   /* Evita que la imatge es deformi */
+    border: 3px solid var(--accent); /* Marc d'accent */
     margin-bottom: 20px;
+    box-shadow: 0 0 15px rgba(56, 189, 248, 0.2); /* Sutil resplendor blau */
 }
 
-/* Updated Button Styles */
-.links {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin-bottom: 50px;
-    padding: 0;
+h1 {
+    color: var(--text-primary);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+    letter-spacing: -0.025em;
 }
-.links a {
-    display: inline-block;
+
+/* 6. Enllaç del correu electrònic */
+.email {
+    margin-bottom: 24px;
+}
+
+.email a {
+    color: var(--accent);
     text-decoration: none;
-    color: #fff;
-    background-color: #555; /* Grey Background */
-    padding: 15px 30px;
-    border-radius: 5px;
-    font-size: 1.1rem;
     font-weight: 500;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-    position: relative;
-    overflow: hidden;
-}
-.links a::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 300%;
-    height: 300%;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 5%;
-    transform: translate(-50%, -50%) scale(0);
-    transition: transform 0.5s ease;
-    pointer-events: none;
-}
-.links a:hover {
-    background-color: #777; /* Lighter Grey on Hover */
-    transform: translateY(-3px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
-}
-.links a:hover::before {
-    transform: translate(-50%, -50%) scale(1);
+    font-size: 1.05rem;
+    border-bottom: 1px dashed rgba(56, 189, 248, 0.3);
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
 }
 
-/* Footer */
+.email a:hover {
+    color: var(--accent-hover);
+    border-bottom-color: var(--accent-hover);
+}
+
+/* 7. Biografia / Descripció */
+.bio {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin-bottom: 30px;
+    text-align: justify; /* Justificat o 'center' segons prefereixis */
+}
+
+/* 8. Botons i enllaços de xarxes socials */
+.links {
+    margin-top: 10px;
+}
+
+.link {
+    display: inline-block;
+    background-color: var(--accent);
+    color: var(--bg-main); /* El text del botó pren el color fosc del fons */
+    font-weight: 600;
+    text-decoration: none;
+    padding: 12px 32px;
+    border-radius: 8px;
+    transition: background-color 0.2s, transform 0.1s ease;
+}
+
+.link:hover {
+    background-color: var(--accent-hover);
+    transform: translateY(-1px); /* Efecte d'elevació sutil */
+}
+
+.link:active {
+    transform: translateY(1px);
+}
+
+/* 9. Peu de pàgina */
 footer {
-    position: absolute;
-    bottom: 10px;
-    font-size: 0.9rem;
-    color: #aaa;
+    margin-top: 40px;
+    text-align: center;
 }
 
-/* Responsive Design */
-@media (max-width: 600px) {
-    h1 {
-        font-size: 2.5rem;
-    }
-    p {
-        font-size: 1rem;
-    }
-    .links a {
-        padding: 12px 25px;
-        font-size: 1rem;
-    }
-    .profile-picture {
-        width: 120px;
-        height: 120px;
-    }
+footer p {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+/* 10. Accessibilitat (Classes per amagar text visualment) */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }
